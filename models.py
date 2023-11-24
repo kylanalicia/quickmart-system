@@ -16,3 +16,15 @@ class Product(Base):
     supplier = Column(String)
     
     orders = relationship('OrderItem', backref='product')  # Relationship with OrderItem
+
+class Customer(Base):
+    __tablename__ = 'customers'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    email = Column(String)
+    address = Column(String)
+    phone_number = Column(String)
+    loyalty_points = Column(Integer)
+    
+    orders = relationship('Order', backref='customer')  # Relationship with Order
