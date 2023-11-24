@@ -39,3 +39,14 @@ class Order(Base):
 
     customer = relationship('Customer', backref='orders')
     items = relationship('OrderItem', backref='order')
+
+class Inventory(Base):
+    __tablename__ = 'inventory'
+
+    id = Column(Integer, primary_key=True)
+    product_id = Column(Integer, ForeignKey('products.id'))
+    quantity = Column(Integer)
+    notes = Column(String)  
+    supplier = Column(String)
+
+    product = relationship('Product', backref='inventory')
