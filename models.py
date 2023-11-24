@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -28,3 +28,14 @@ class Customer(Base):
     loyalty_points = Column(Integer)
     
     orders = relationship('Order', backref='customer')  # Relationship with Order
+
+class Order(Base):
+    __tablename__ = 'orders'
+
+    id = Column(Integer, primary_key=True)
+    customer_id = Column(Integer, ForeignKey('customers.id'))
+    total_price = Column(Float)
+    status = Column(String)
+
+    customer = relationship('Customer', backref='orders')
+    items = relationship('OrderItem', backref='order')
