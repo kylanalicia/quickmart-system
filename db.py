@@ -9,6 +9,6 @@ metadata = MetaData(naming_convention=convention)
 Base = declarative_base(metadata=metadata)
 
 # Create an SQLAlchemy engine and session
-engine = create_engine('sqlite:///database.db')
+engine = create_engine('sqlite:///quickmart.db')
 Session = sessionmaker(bind=engine)
 session = Session()
